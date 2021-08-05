@@ -36,5 +36,6 @@ class Solution {
         memo = new ArrayList<Long>((int)n);
         initialize(n, memo);
         System.out.println(fib_dp(n)); 
+        sc.close();
     }
 }
