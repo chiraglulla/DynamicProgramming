@@ -30,12 +30,26 @@ class Solution {
         }
     }
 
+    //tabulation --- time - O(n)
+    static long fib_tab(int n) {
+        long[] table = new long[n+1];
+        table[0] = 0;
+        table[1] = 1;
+
+        for(int i = 2; i <= n; i++) {
+            table[i] = table[i-2] + table[i-1];
+        }
+
+        return table[n];
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
         memo = new ArrayList<Long>((int)n);
         initialize(n, memo);
-        System.out.println(fib_dp(n)); 
+        System.out.println(fib_dp(n));
+        System.out.println(fib_tab(n)); 
         sc.close();
     }
 }
