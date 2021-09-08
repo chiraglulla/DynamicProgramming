@@ -22,9 +22,26 @@ class Solution {
         return map.get(key1);
     }
 
+    // tabulation
+    static long gridTravelerTabulation(int m, int n) {
+        long[][] grid = new long[m+1][n+1];
+        grid[1][1] = 1;
+        for(int i = 0; i <= m; i++) {
+            for(int j = 0; j <= n; j++) {
+                long current = grid[i][j];
+                if(i+1 <= m) 
+                    grid[i+1][j] += current;
+                if(j+1 <= n)
+                    grid[i][j+1] += current; 
+            }
+        }
+        return grid[m][n];
+    }
+
     public static void main(String[] args) {
         HashMap<String, Long> map = new HashMap<String, Long>();
-        System.out.println(gridTraveler(25, 25, map));
-        System.out.println(map);     
+        System.out.println(gridTraveler(3, 2, map));
+        System.out.println(gridTravelerTabulation(3, 2));
+        System.out.println(gridTravelerTabulation(18, 18));
     }
 }
