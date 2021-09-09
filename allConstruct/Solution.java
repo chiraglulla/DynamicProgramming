@@ -3,35 +3,23 @@ import java.util.ArrayList;
 public class Solution {
 
     static ArrayList<ArrayList<String>> constructTargetWays(ArrayList<ArrayList<String>> result, String word) {
-        if(result.size() == 0) {
-            result.add(new ArrayList<String>());
-        }
+        // if(result.size() == 0) {
+        //     result.add(new ArrayList<String>());
+        // }
         for(ArrayList<String> comb: result){
             comb.add(0, word);
         }
         return result;
     }
 
-    static void allConstruct(String target, ArrayList<String> wordBank) {
-        ArrayList<ArrayList<String>> finalAns = check(target, wordBank);
-
-        for(int i = 0; i < finalAns.size(); i++) {
-            String str = String.join("", finalAns.get(i));
-            System.out.println(str);
-            if(!str.equals("purple")) {
-                finalAns.remove(i);
-                i--;
-            }
+    static ArrayList<ArrayList<String>> check(String target, ArrayList<String> wordBank) {
+        if(target.equals("")){
+            ArrayList<ArrayList<String>> finalAns = new ArrayList<ArrayList<String>>();
+            finalAns.add(new ArrayList<String>());
+            return finalAns; //[[]]
         }
 
-        System.out.println(finalAns);
-    }
-
-    static ArrayList<ArrayList<String>> check(String target, ArrayList<String> wordBank) {
-        if(target.equals(""))
-            return new ArrayList<ArrayList<String>>();
-
-        ArrayList<ArrayList<String>> finalAns = new ArrayList<ArrayList<String>>();
+        ArrayList<ArrayList<String>> finalAns = new ArrayList<ArrayList<String>>(); //[]
 
         for (int i = 0; i < target.length(); i++) {
             String prefix = target.substring(0, i+1);
@@ -56,21 +44,20 @@ public class Solution {
         wordBank.add("le");
         wordBank.add("purpl");
 
-       allConstruct("purple", wordBank);
+       System.out.println(check("purple", wordBank));
 
-    //     ArrayList<String> wordBank2 = new ArrayList<String>();
+        ArrayList<String> wordBank2 = new ArrayList<String>();
+        wordBank2.add("ab");
+        wordBank2.add("abc");
+        wordBank2.add("cd");
+        wordBank2.add("def");
+        wordBank2.add("abcd");
+        wordBank2.add("ef");
+        wordBank2.add("c");
+        wordBank2.add("abcde");
 
-    //     wordBank2.add("ab");
-    //     wordBank2.add("abc");
-    //     wordBank2.add("cd");
-    //     wordBank2.add("def");
-    //     wordBank2.add("abcd");
-    //     wordBank2.add("ef");
-    //     wordBank2.add("c");
-    //     wordBank2.add("abcde");
 
-
-    //     System.out.println(allConstruct("abcdef", wordBank2));
+        System.out.println(check("abcdef", wordBank2));
 
     //     ArrayList<String> wordBank3 = new ArrayList<String>();
 
