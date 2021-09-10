@@ -35,6 +35,25 @@ class Solution {
         map.put(target, false);
         return false;
     }
+
+    //tabulation
+    static boolean canConstructTabulation(String target, List<String> wordBank) {
+        boolean[] table = new boolean[target.length()+1];
+        Arrays.fill(table, false);
+        table[0] = true;
+        
+        //abcdef ab abc cd def abcd
+        for(int i = 0; i <= target.length(); i++) {
+            if(table[i] == true) {
+                for(String word: wordBank) {
+                    if(i + word.length() <= target.length() && target.substring(i, i + word.length()).equals(word)) {
+                        table[i + word.length()] = true;
+                    }
+                }
+            }
+        }
+        return table[target.length()];
+    }
     
     
     public static void main(String[] args) {
@@ -44,7 +63,7 @@ class Solution {
         wordBank1.add("cd");
         wordBank1.add("def");
         wordBank1.add("abcd");
-        System.out.println(canConstruct("abcdef", wordBank1));
+        System.out.println(canConstructTabulation("abcdef", wordBank1));
 
         List<String> wordBank2 = new LinkedList<String>();
         wordBank2.add("bo");
@@ -54,7 +73,7 @@ class Solution {
         wordBank2.add("ska");
         wordBank2.add("sk");
         wordBank2.add("boar");
-        System.out.println(canConstruct("skateboard", wordBank2));
+        System.out.println(canConstructTabulation("skateboard", wordBank2));
 
         List<String> wordBank3 = new LinkedList<String>();
         wordBank3.add("a");
@@ -64,7 +83,7 @@ class Solution {
         wordBank3.add("ot");
         wordBank3.add("o");
         wordBank3.add("t");
-        System.out.println(canConstruct("enterapotentpot", wordBank3));
+        System.out.println(canConstructTabulation("enterapotentpot", wordBank3));
 
         List<String> wordBank4 = new LinkedList<String>();
         wordBank4.add("e");
@@ -74,6 +93,6 @@ class Solution {
         wordBank4.add("eeeee");
         wordBank4.add("eeeeee");
         wordBank4.add("eeeeeee");
-        System.out.println(canConstruct("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeef", wordBank4, new HashMap<String, Boolean>()));
+        System.out.println(canConstructTabulation("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeef", wordBank4));
     }
 }
