@@ -1,38 +1,33 @@
 import java.util.ArrayList;
+import java.util.List;
 
 public class Solution {
-
-    static ArrayList<ArrayList<String>> constructTargetWays(ArrayList<ArrayList<String>> result, String word) {
-        // if(result.size() == 0) {
-        //     result.add(new ArrayList<String>());
-        // }
-        for(ArrayList<String> comb: result){
-            comb.add(0, word);
-        }
-        return result;
-    }
-
     static ArrayList<ArrayList<String>> check(String target, ArrayList<String> wordBank) {
-        if(target.equals("")){
+        if (target.equals("")) {
             ArrayList<ArrayList<String>> finalAns = new ArrayList<ArrayList<String>>();
             finalAns.add(new ArrayList<String>());
-            return finalAns; //[[]]
+            return finalAns; // [[]]
         }
 
-        ArrayList<ArrayList<String>> finalAns = new ArrayList<ArrayList<String>>(); //[]
+        ArrayList<ArrayList<String>> finalAns = new ArrayList<ArrayList<String>>(); // []
 
         for (int i = 0; i < target.length(); i++) {
-            String prefix = target.substring(0, i+1);
-            if(wordBank.contains(prefix)) {
-                ArrayList<ArrayList<String>> result = check(target.substring(i+1), wordBank);
+            String prefix = target.substring(0, i + 1);
+            if (wordBank.contains(prefix)) {
+                ArrayList<ArrayList<String>> result = check(target.substring(i + 1), wordBank);
                 ArrayList<ArrayList<String>> ways = constructTargetWays(result, prefix);
                 finalAns.addAll(ways);
             }
         }
-        
+
         return finalAns;
     }
 
+    static ArrayList<ArrayList<String>> constructTargetWays(ArrayList<ArrayList<String>> result, String word) {
+        for (ArrayList<String> comb : result) 
+            comb.add(0, word);
+        return result;
+    }
 
     public static void main(String[] args) {
 
@@ -44,7 +39,7 @@ public class Solution {
         wordBank.add("le");
         wordBank.add("purpl");
 
-       System.out.println(check("purple", wordBank));
+        System.out.println(check("purple", wordBank));
 
         ArrayList<String> wordBank2 = new ArrayList<String>();
         wordBank2.add("ab");
@@ -54,22 +49,20 @@ public class Solution {
         wordBank2.add("abcd");
         wordBank2.add("ef");
         wordBank2.add("c");
-        wordBank2.add("abcde");
-
 
         System.out.println(check("abcdef", wordBank2));
 
-    //     ArrayList<String> wordBank3 = new ArrayList<String>();
+        ArrayList<String> wordBank3 = new ArrayList<String>();
 
-    //     wordBank3.add("bo");
-    //     wordBank3.add("rd");
-    //     wordBank3.add("ate");
-    //     wordBank3.add("t");
-    //     wordBank3.add("ska");
-    //     wordBank3.add("sk");
-    //     wordBank3.add("boar");
+        wordBank3.add("bo");
+        wordBank3.add("rd");
+        wordBank3.add("ate");
+        wordBank3.add("t");
+        wordBank3.add("ska");
+        wordBank3.add("sk");
+        wordBank3.add("boar");
 
-    //     System.out.println(allConstruct("skateboard", wordBank3));
+        System.out.println(check("skateboard", wordBank3));
 
         // ArrayList<ArrayList<String>> arr = new ArrayList<ArrayList<String>>();
         // ArrayList<ArrayList<String>> arr1 = new ArrayList<ArrayList<String>>();
@@ -85,7 +78,6 @@ public class Solution {
 
         // arr1.add(arr3);
         // arr1.add(arr4);
-
 
         // System.out.println(arr3);
         // System.out.println(arr1);

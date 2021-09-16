@@ -44,9 +44,6 @@ class Solution {
         //abcdef ab abc cd def abcd ef
         //[1, 0, 1, 1, 2, 0, 3]
 
-        //purple purp p ur le purpl
-        //[1, 0, 0, 0 ,0, 0, 0]
-
         for(int i = 0; i <= target.length(); i++) {
             System.out.println("Pass: " + i);
             for(String word: wordBank) {
